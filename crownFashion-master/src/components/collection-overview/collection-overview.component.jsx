@@ -11,12 +11,8 @@ import  {CollectionOverviewContainer} from './collection-overview.styles';
 
 
 
-
-const CollectionOverview = ({collections})=>{
-    
-    
-    return(
-    <CollectionOverviewContainer>
+const CollectionOverview = ({collections})=>(
+     <CollectionOverviewContainer>
      
      <div>
         {collections.map(({id,...otherCollectionProps})=>{
@@ -25,11 +21,9 @@ const CollectionOverview = ({collections})=>{
      </div>
 
     </CollectionOverviewContainer>
-    )
-    };
-
-
-const mapStateToProps = createStructuredSelector({
+);
+    
+  const mapStateToProps = createStructuredSelector({
     collections:selectCollectionsForPreview
 });
 

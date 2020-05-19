@@ -3,18 +3,22 @@ import {persistStore} from 'redux-persist'; //adding for persisting store
 
 import logger from 'redux-logger';
 
-import thunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga'
 
-import combineReducers from './root-reducer';
+import rootReducer from './root-reducer';
 
-const middleware = [thunk];
+import {fetchCollectionsStart} from './shop/shop.sagas';
+
+const sagaMiddleware = createSagaMiddleware();
+const middleware = [sagaMiddleware];
 
 if(process.env.NODE_ENV === 'development'){
     middleware.push(logger);
 }
 
 
-export  const store = createStore(combineReducers,applyMiddleware(...middleware)); //spreading beacuse we want to scale. applymidlleware can take any no. of middlewares.
+export  const store = createStore(rootReducer,applyMiddleware(...middleware)); //spreading beacuse we want to scale. applymidlleware can take any no. of middlewares.
+sagaMiddleware.run(fetchCollectionsStart);
 
 export  const persistor = persistStore(store);
 

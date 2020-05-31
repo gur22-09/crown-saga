@@ -10,6 +10,8 @@ import {auth,createUserProfileDocument} from '../../firebase/firebase.utils';
 
 import {SignUpContainer,SignUpTitle} from './sign-up.styles';
 
+//Actions
+
 
 
 class SignUp extends React.Component{
@@ -35,23 +37,7 @@ class SignUp extends React.Component{
             return;
         }
 
-        try{
-           //authenticating the new user  
-           const {user} = await auth.createUserWithEmailAndPassword(email,password);
-           
-           await createUserProfileDocument(user,{displayName});
-
-           this.setState({
-            displayName:'',
-            email:'',
-            password:'',
-            confirmPassword:''
-           });
-
-        }catch(error){
-          console.error(error);
-          
-        }
+       
     }
     
     handleChange = (event)=>{

@@ -77,9 +77,9 @@ export const convertCollectionsSnapshotToMap =(collections)=>{
 }
 
 
-const provider = new firebase.auth.GoogleAuthProvider(); //creating an instance of googleprovider object
+export const googleProvider = new firebase.auth.GoogleAuthProvider(); //creating an instance of googleprovider object
 
-provider.setCustomParameters({'promt':'select_account'});//using google auth provider
+googleProvider.setCustomParameters({'promt':'select_account'});//using google auth provider
 
 //to create a collection for out cart items
 
@@ -98,7 +98,7 @@ export const addCollectionAndDocuments = async (collectionKey,ObjectsToAdd)=>{
    return await batch.commit();
 }
 
-export const signInWithGoogle = ()=>(auth.signInWithPopup(provider));
+export const signInWithGoogle = ()=>(auth.signInWithPopup(googleProvider));
 
 export default firebase;
 

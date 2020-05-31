@@ -19,15 +19,7 @@ function* fetchCollectionsAsync(){
         yield put(fetchCollectionsStartFailure(err));
     }
     
-    // collectionRef.get().then(snapShot=>{
 
-    //   const collectionsMap = convertCollectionsSnapshotToMap(snapShot);
-
-    //   //now after successfully getting the collctions we are going to dispatch our fetchCollectionsSuccess function 
-
-    //   dispatch(fetchCollectionsStartSuccess(collectionsMap));
-      
-    // }).catch(error=>dispatch(fetchCollectionsStartFailure(error))); 
 }
 
 

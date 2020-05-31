@@ -7,7 +7,7 @@ import createSagaMiddleware from 'redux-saga'
 
 import rootReducer from './root-reducer';
 
-import {fetchCollectionsStart} from './shop/shop.sagas';
+import rootSaga from './root-saga';
 
 const sagaMiddleware = createSagaMiddleware();
 const middleware = [sagaMiddleware];
@@ -18,7 +18,8 @@ if(process.env.NODE_ENV === 'development'){
 
 
 export  const store = createStore(rootReducer,applyMiddleware(...middleware)); //spreading beacuse we want to scale. applymidlleware can take any no. of middlewares.
-sagaMiddleware.run(fetchCollectionsStart);
+
+sagaMiddleware.run(rootSaga);
 
 export  const persistor = persistStore(store);
 

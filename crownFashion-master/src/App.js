@@ -17,15 +17,15 @@ import {connect} from 'react-redux';
 
 import {createStructuredSelector} from 'reselect';
 import {selectCurrentUser} from './Redux/user/user.selector';
-
+import {checkUserSession} from './Redux/user/user-action';
 
 class App extends Component{
   
   unsubscribeAuth = null;
 
   componentDidMount(){
-    
-    
+    const {checkUserSession} = this.props;
+    checkUserSession();
      
   //  this.unsubscribeAuth = auth.onAuthStateChanged(async userAuth=>{ //this can be null or the obj.
 
@@ -81,5 +81,9 @@ const mapStateToProps = createStructuredSelector({
   currentUser:selectCurrentUser,
   
 });
+
+const mapDispatchToProps = dispatch =>({
+  checkUserSession:()=>(dispatch(checkUserSession()))
+})
  
-export default connect(mapStateToProps,null)(App);
+export default connect(mapStateToProps,mapDispatchToProps)(App);

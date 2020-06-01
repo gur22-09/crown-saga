@@ -10,7 +10,7 @@ import {userActionTypes} from './user.types';
 import {auth,googleProvider,createUserProfileDocument,getCurrentUser} from '../../firebase/firebase.utils';
 
 //actions
-import {signInFailure, signInSuccess} from './user-action';
+import {signInFailure, signInSuccess,signOutSuccess,signOutFailure} from './user-action';
 
 
 
@@ -59,6 +59,15 @@ function* checkUserSession(){
  }
 }
 
+function* signOut(){
+    try{
+        yield auth.signOut();
+        yield  put(signOutSuccess());
+    }catch(err){
+        yield put(signOutFailure(err));
+    }
+}
+
 export function* onCheckUserSession(){
     yield takeLatest(userActionTypes.CHECK_USER_SESSION,checkUserSession);
 }
@@ -71,6 +80,10 @@ export function* onSignInWithEmail(){
     yield takeLatest(userActionTypes.EMAIL_SIGN_IN_START,signInWithEmail);
 }
 
+export function* onSignOutStart(){
+    yield takeLatest(userActionTypes.SIGN_OUT_START,signOut);
+}
+
 export function* userSagas(){
-    yield all([call(onSignInWithGoogle),call(onSignInWithEmail),call(onCheckUserSession)]);
+    yield all([call(onSignInWithGoogle),call(onSignInWithEmail),call(onCheckUserSession),call(onSignOutStart)]);
 } 

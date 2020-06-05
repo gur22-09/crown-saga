@@ -15,7 +15,7 @@ import {
     HeaderBlockContainer,
     TotalContainer,
     WarningContainer
-  } from './checkout.styles';
+} from './checkout.styles';
 
 
 const Checkout = ({cartItems,totalPrice})=>(

@@ -13,6 +13,7 @@ export const CartDropdownContainer = styled.div`
   top: 90px;
   right: 40px;
   z-index: 5;
+  
 `;
 
 export const CartDropdownButton = styled(CustomButton)`
@@ -28,5 +29,6 @@ export const CartItemsContainer = styled.div`
   height: 240px;
   display: flex;
   flex-direction: column;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x:hidden;
 `;

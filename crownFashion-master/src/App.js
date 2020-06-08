@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 
 import {Route,Switch,Redirect} from 'react-router-dom';
@@ -19,12 +19,10 @@ import {createStructuredSelector} from 'reselect';
 import {selectCurrentUser} from './Redux/user/user.selector';
 import {checkUserSession} from './Redux/user/user-action';
 
-class App extends Component{
+const App = ({checkUserSession,currentUser})=>{
   
-  unsubscribeAuth = null;
-
-  componentDidMount(){
-    const {checkUserSession} = this.props;
+  useEffect(()=>{
+    
     checkUserSession();
      
   //  this.unsubscribeAuth = auth.onAuthStateChanged(async userAuth=>{ //this can be null or the obj.
@@ -47,12 +45,13 @@ class App extends Component{
   //     setCurrentUser(userAuth);
       
   // });
+  },[checkUserSession])
+
+ 
+
+
+
   
-  }
-
-
-
-  render(){
     
     return (<div>
     <Header />
@@ -70,7 +69,7 @@ class App extends Component{
     <Footer />
       
     </div>)
-  }
+  
 }
 
 

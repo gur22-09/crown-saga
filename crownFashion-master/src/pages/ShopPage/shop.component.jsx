@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 
 
 import CollectionsOverviewContainer from '../../components/collection-overview/collections-overview.container.component';
@@ -22,21 +22,14 @@ import {fetchCollectionsStart} from '../../Redux/shop/shop.action';
 
 
 
-class Shop extends React.Component{
- 
-
-  componentDidMount(){
-   
-    const {fetchCollectionsStart} = this.props;
-    fetchCollectionsStart();
-    
-  }
-
-render(){
+const Shop = ({fetchCollectionsStart,match})=>{
   
 
-   
-  const {match} = this.props;
+
+  useEffect(()=>{
+    fetchCollectionsStart();
+  },[fetchCollectionsStart]);
+
   
   return (
     
@@ -50,7 +43,7 @@ render(){
 
   ) 
 
- }    
+   
 }
 
 

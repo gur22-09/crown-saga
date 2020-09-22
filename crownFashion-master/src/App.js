@@ -1,18 +1,16 @@
 import React, { useEffect } from 'react';
-import './App.css';
-
 import {Route,Switch,Redirect} from 'react-router-dom';
-
+import {connect} from 'react-redux';
 import Homepage from './pages/homepage/homepage.component';
 import Shop from './pages/ShopPage/shop.component';
 import Header from './components/Header/header.component';
 import Footer from './components/footer/footer.component';
 import SignInAndSignUp from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
 import Checkout from './pages/checkout/checkout.component';
+import { GlobalStyles } from './global.styles';
 
 
 
-import {connect} from 'react-redux';
 
 
 import {createStructuredSelector} from 'reselect';
@@ -46,21 +44,16 @@ const App = ({checkUserSession,currentUser})=>{
       
   // });
   },[checkUserSession])
-
- 
-
-
-
   
-    
-    return (<div>
+  return (<div>
     <Header />
+    <GlobalStyles />
     <Switch>
      <Route exact path='/' component={Homepage} />
      <Route path='/shop' component={Shop} />
      <Route exact path='/checkout' component={Checkout} />
      <Route exact path='/signin' 
-      render ={()=>this.props.currentUser?
+      render ={()=>currentUser?
       (<Redirect to='/'/>)
       :
       (<SignInAndSignUp/>)}

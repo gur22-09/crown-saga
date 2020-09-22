@@ -89,6 +89,7 @@ function * checkUserSession() {
 }
 
 function * signOut() {
+    console.log('signout saga was called');
     try {
         yield auth.signOut();
         yield put(signOutSuccess());

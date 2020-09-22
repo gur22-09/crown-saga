@@ -1,23 +1,15 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import FormInput from '../form-input/form-input.component';
-
 import CustomButton from '../custom-button/custom-button.component';
-
-import {auth,createUserProfileDocument} from '../../firebase/firebase.utils';
-
-
-
 import {SignUpContainer,SignUpTitle} from './sign-up.styles';
 
 //Actions
 import {signUpStart} from '../../Redux/user/user-action';
-//Spinner
-import LoadingSpinner from '../loading-spinner/loading-spinner.component';
+
 //reselect
 import {createStructuredSelector} from 'reselect';
-import {selectisLoading} from '../../Redux/user/user.selector';
-import {compose} from 'redux';
+
 class SignUp extends React.Component{
     constructor(){
         super();
@@ -108,11 +100,6 @@ class SignUp extends React.Component{
 const mapDispatchToProps = dispatch=>({
     signUpStart:(email,password)=>dispatch(signUpStart({email,password}))
 })
-const mapStateToProps = createStructuredSelector({
-    isLoading:selectisLoading
-})
 
-export default compose(
-    connect(mapStateToProps,mapDispatchToProps),
-    LoadingSpinner
-)(SignUp);
+
+export default connect(null,mapDispatchToProps)(SignUp);

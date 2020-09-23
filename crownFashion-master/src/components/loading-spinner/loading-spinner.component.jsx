@@ -1,24 +1,11 @@
-import React from 'react';
+import React from "react";
+import Spinner from "../spinner/spinner.component";
 
-import {SpinnerOverlay,SpinnerContainer} from './loading-spinner.styles';
-
-const LoadingSpinner = Component =>{
-
-    const Spinner = ({isLoading,...otherProps})=>{
-     return isLoading ? (
-       <SpinnerOverlay>
-        <SpinnerContainer />
-       </SpinnerOverlay>
-     )
-     :
-     (
-        <Component {...otherProps}/>
-     );
-    };
-
-  return Spinner;
-};
-
-
+const LoadingSpinner = (Component) => ({ isLoading, ...otherProps }) =>
+  isLoading ? (
+    <Spinner />
+  ) : (
+    <Component {...otherProps} />
+  );
 
 export default LoadingSpinner;

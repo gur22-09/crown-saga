@@ -1,56 +1,44 @@
-import React,{useEffect} from 'react';
+import React, { useEffect, lazy, Suspense } from "react";
+import { Route } from "react-router-dom";
+import { connect } from "react-redux";
 
+import { fetchCollectionsStart } from "../../Redux/shop/shop.action";
+import Spinner from "../../components/spinner/spinner.component";
 
-import CollectionsOverviewContainer from '../../components/collection-overview/collections-overview.container.component';
-import CollectionPageContainer from '../collection/collection.container.component';
+const CollectionsOverviewContainer = lazy(() =>
+  import(
+    "../../components/collection-overview/collections-overview.container.component"
+  )
+);
+const CollectionPageContainer = lazy(() =>
+  import("../collection/collection.container.component")
+);
 
-
-
-import {Route} from 'react-router-dom';
-
-
-
-import {connect} from 'react-redux';
-
-
-import {fetchCollectionsStart} from '../../Redux/shop/shop.action';
-
-
-
-
-
-
-
-
-const Shop = ({fetchCollectionsStart,match})=>{
-  
-
-
-  useEffect(()=>{
+const Shop = ({ fetchCollectionsStart, match }) => {
+  useEffect(() => {
     fetchCollectionsStart();
-  },[fetchCollectionsStart]);
+  }, [fetchCollectionsStart]);
 
-  
   return (
-    
     <div>
-      <Route exact path={`${match.path}`} 
-      component={CollectionsOverviewContainer} />
+      <Suspense fallback={<Spinner />}>
+        <Route
+          exact
+          path={`${match.path}`}
+          component={CollectionsOverviewContainer}
+        />
 
-      <Route path={`${match.path}/:collectionId`} 
-      component={CollectionPageContainer}/>
+        <Route
+          path={`${match.path}/:collectionId`}
+          component={CollectionPageContainer}
+        />
+      </Suspense>
     </div>
+  );
+};
 
-  ) 
-
-   
-}
-
-
-
-const mapDispatchToProps = dispatch =>({
-  fetchCollectionsStart:()=>dispatch(fetchCollectionsStart())
+const mapDispatchToProps = (dispatch) => ({
+  fetchCollectionsStart: () => dispatch(fetchCollectionsStart()),
 });
 
-
-export default connect(null,mapDispatchToProps)(Shop);
+export default connect(null, mapDispatchToProps)(Shop);

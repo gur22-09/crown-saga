@@ -17,7 +17,7 @@ const Footer =()=>{
         &#169;{date} made by Gurprit, 
           thanks to   <a href={yihuasTwitterId}  rel="noreferrer noopener" target='_blank'> Yihua </a>  for being an awesome mentor <br />
 
-        <a className='icon' href={githubRef}><GitHubIcon/></a> <a className='icon' href={linkedInRef}><LinkedInIcon/></a>
+        <a className='icon' href={githubRef}><GitHubIcon fontSize="large"/></a> <a className='icon' href={linkedInRef}><LinkedInIcon fontSize="large"/></a>
         </div>
     </footer>
     )

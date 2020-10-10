@@ -22,7 +22,7 @@ if (process.env.NODE_ENV === "production") {
   app.get('/service-worker.js', (req, res) => {
     res.sendFile(path.resolve(__dirname, '..', 'build', 'service-worker.js'));
   });
-  app.use(enforce.HTTPS({ trustProctoHeader: true }));
+  // app.use(enforce.HTTPS({ trustProctoHeader: true }));
   app.use(express.static(path.join(__dirname, "client/build")));
 
   app.get("*", function (req, res) {
